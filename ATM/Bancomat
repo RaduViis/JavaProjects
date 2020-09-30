@@ -1,0 +1,6 @@
+public class Bancomat {
+	public static void main(String args[]) {
+		OptiuniMeniu start = new OptiuniMeniu();
+		start.functieLogare();
+	}
+}
