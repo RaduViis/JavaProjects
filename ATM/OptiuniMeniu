@@ -1,0 +1,62 @@
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.Map.Entry;
+public class OptiuniMeniu extends ContBancar {
+	Scanner input = new Scanner(System.in);
+	HashMap<Integer, Integer> informatii = new HashMap<Integer, Integer>();
+	int x, selectie;
+	void functieLogare() {
+		do {
+			 x = 1;
+			try {
+				informatii.put(9906, 112);
+				informatii.put(3322, 451);
+				System.out.println("Introduceti numarul contului: ");
+				setNumarCont(input.nextInt());
+				System.out.println("Introduceti numarul pin: ");
+				setNumarPin(input.nextInt());	
+			}catch(Exception e) {
+				System.out.println("Caracter(e) invalid(e)! Introduceti doar numere!" + "\n");
+				x = 2;
+			}
+				for(Entry<Integer, Integer> data: informatii.entrySet()) {
+					if(data.getKey() == getNumarCont() && data.getValue() == getNumarPin())
+						VerificareCont();
+				}
+				System.out.println("Numarul contului sau codul pin este incorect. ");
+			}while (x == 1);
+	}
+
+	void VerificareCont() {
+		System.out.println("1 - Verificare balanta cont: ");
+		System.out.println("2 - Retrageti o anumita suma: ");
+		System.out.println("3 - Depuneti: ");
+		System.out.println("4- Exit");
+		do {
+			if(selectie >= 5)
+				System.out.println("Introduceti un numar intre 1 si 4");
+			selectie = input.nextInt();
+			switch(selectie) {
+			
+			case 1: 
+				System.out.println("Balanta contului este: " + formatMonetar.format(getBalantaCont()));
+				VerificareCont();
+				break;
+			
+			case 2:
+				calcExtragereBalantaCont();
+				VerificareCont();
+				break;
+			
+			case 3:
+				calcDepunereBalantaCont();
+				VerificareCont();
+				break;
+			
+			case 4:
+				System.out.println("Va multumim! O zi buna!");
+				break;
+			}
+			}while(selectie >= 5);
+	}
+}
