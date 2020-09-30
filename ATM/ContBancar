@@ -1,0 +1,52 @@
+import java.text.DecimalFormat;
+import java.util.Scanner;
+public class ContBancar {
+
+	private int numarCont;
+	private int numarPin;
+	private double balantaCont = 0;
+	Scanner input = new Scanner(System.in);
+	DecimalFormat formatMonetar = new DecimalFormat("'$',###,##0.0");
+	public int getNumarCont() {
+		return numarCont;
+	}
+	 
+	public int getNumarPin() {
+		return numarPin;
+	}
+	
+	public double getBalantaCont() {
+		return balantaCont;
+	}
+	
+	public void setNumarCont(int numarCont) {
+		this.numarCont = numarCont;
+	}
+	
+	public void setNumarPin(int numarPin) {
+		this.numarPin = numarPin;
+	}
+	
+	public void calcExtragereBalantaCont() {
+		System.out.println("Introduceti suma pe care vreti sa o retrageti: ");
+		double suma = input.nextDouble();
+		
+		if(balantaCont - suma >= 0 ){
+			balantaCont = balantaCont - suma;
+			System.out.println("Noua balanta a contului este: "+ formatMonetar.format(balantaCont));
+		}else
+			System.out.println("Fonduri insuficiente!");
+	}
+	
+	public void calcDepunereBalantaCont() {
+		System.out.println("Introduceti sumpar pe care vreti sa o depuneti: ");
+		try {
+		double suma = input.nextDouble();
+		balantaCont = balantaCont + suma;
+		}catch(Exception e) {
+			System.out.println("Introduceti doar numere");
+		}
+		
+		System.out.println("Noua balanta a contului este: " + formatMonetar.format(balantaCont));
+	}
+}
